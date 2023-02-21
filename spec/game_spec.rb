@@ -13,7 +13,7 @@ describe Game do
       expect(game.last_played_at).to eq('11/22/2022')
     end
     it 'should have a published_date' do
-      expect(game.published_date).to eq('01/28/1998')
+      expect(game.publish_date).to eq('01/28/1998')
     end
     it 'has can_be_archived? method' do
       expect(game).to respond_to(:can_be_archived?)
