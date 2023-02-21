@@ -1,5 +1,5 @@
 require_relative 'spec_helper'
-require_relative '../class/genre'
+require_relative './Class/genre'
 
 describe Genre do
   context 'Test Genre Class' do
