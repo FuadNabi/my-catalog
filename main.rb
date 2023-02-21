@@ -51,8 +51,21 @@ class Main < App
     end
   end
 
+  def logo
+    puts "
+                         _/                _/
+    _/_/_/    _/_/_/  _/_/_/_/    _/_/_/  _/    _/_/      _/_/_/
+ _/        _/    _/    _/      _/    _/  _/  _/    _/  _/    _/
+_/        _/    _/    _/      _/    _/  _/  _/    _/  _/    _/
+ _/_/_/    _/_/_/      _/_/    _/_/_/  _/    _/_/      _/_/_/
+                                                          _/
+                                                     _/_/
+    "
+  end
+
   def run
     load_data
+    puts logo
     puts 'Welcome to Catalogue App!'
     loop do
       display_menu
