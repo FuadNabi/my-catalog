@@ -1,4 +1,5 @@
 require_relative '../item'
+require_relative 'item'
 
 class MusicAlbum < Item
   def initialize(publish_date, on_spotify: false)
