@@ -11,3 +11,22 @@ CREATE TABLE authors(
     first_name varchar(255),
     last_name varchar(255),
 )
+
+CREATE TABLE "genre"(
+    "id" INT PRIMARY KEY,
+    "name" VARCHAR(255)
+);
+
+CREATE TABLE "music_albums"(
+    "id" INT PRIMARY KEY,
+    "on_spotify" BOOLEAN,
+    "genre" INT,
+    "author" INT,
+    "source" INT,
+    "label" INT,
+    "publish_date" DATE,
+    "archived" BOOLEAN
+);
+
+ALTER TABLE
+    "music_albums" ADD CONSTRAINT "music_albums_genre_foreign" FOREIGN KEY("genre") REFERENCES "genre"("id");
