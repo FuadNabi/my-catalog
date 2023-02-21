@@ -1,4 +1,3 @@
-require_relative '../item'
 require_relative 'item'
 
 class MusicAlbum < Item
