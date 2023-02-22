@@ -7,6 +7,7 @@
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
+  - [📽️ Video Presentation](#video)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -75,6 +76,12 @@ Example command:
   ruby main.rb
 ```
 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📽️ Video Presentation <a name="built-with"></a>
+
+- [Video Presentation 📽️](https://drive.google.com/file/d/1Jl1U_LszW6nj9ob0WsgXn-VBVgYjBNud/view?usp=share_link)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
