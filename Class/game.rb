@@ -12,4 +12,8 @@ class Game < Item
   def can_be_archived?
     super && @last_played_at > 2
   end
+
+  def create_json
+    { multiplayer: @multiplayer, last_played_at: @last_played_at, publish_date: @publish_date }
+  end
 end

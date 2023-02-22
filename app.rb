@@ -1,5 +1,7 @@
 require_relative './class/music_album'
 require_relative './class/genre'
+require_relative './class/game'
+require './data_store'
 require 'json'
 
 class App
@@ -7,6 +9,9 @@ class App
     @books = []
     @music_albums = []
     @genres = []
+    @games = []
+    @games_store = DataStore.new('games')
+    @games = @games_store.read.map { |game| Game.new(game['multiplayer'], game['last_played_at'], game['publish_date']) }
   end
 
   def list_all_books
@@ -82,9 +87,23 @@ class App
     puts 'Music album was created successfully.'
   end
 
-  def add_movie
+  # Add game option "10"
+  def add_game
     # add code here
-    puts 'Add movies'
+    print 'Multiplayer(y/n)?'
+    multi = gets.chomp
+    print 'Last played at. date [yyyy-mm-dd]:'
+    last_played = gets.chomp
+    print 'Publish date [yyyy-mm-dd]:'
+    published = gets.chomp
+    @games << Game.new(multi, last_played, published)
+    puts 'A new Game added successfully'
+  end
+
+  def save_game
+    game = @games.map(&:create_json)
+    write_data = JSON.pretty_generate(game)
+    File.write('./data/games.json', write_data)
   end
 
   def remove_selected_item
@@ -152,6 +171,7 @@ class App
   end
 
   def save_data
+    save_game
     save_genres
     save_music_albums
   end
