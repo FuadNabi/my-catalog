@@ -14,7 +14,7 @@ class Main < App
       '7': 'List all sources (e.g. From a friend, Online shop)',
       '8': 'Add a book',
       '9': 'Add a music album',
-      '10': 'Add a movie',
+      '10': 'Add a game',
       '11': 'Exit'
     }
   end
@@ -30,7 +30,7 @@ class Main < App
     when '7' then list_all_sources
     when '8' then add_book
     when '9' then add_music_album
-    when '10' then add_movie
+    when '10' then add_game
     end
   end
 
