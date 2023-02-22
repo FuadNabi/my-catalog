@@ -1,4 +1,4 @@
-require_relative '../Class/author'
+require_relative '../class/author'
 
 describe Author do
   let(:author) { Author.new('Josh', 'Williams') }

@@ -1,4 +1,4 @@
-require_relative '../Class/game'
+require_relative '../class/game'
 
 describe Game do
   let(:game) { Game.new('yes', '11/22/2022', '01/28/1998') }

@@ -1,5 +1,5 @@
-require_relative '../Class/book'
-require_relative '../Class/item'
+require_relative '../class/book'
+require_relative '../class/item'
 
 describe Book do
   describe 'New' do

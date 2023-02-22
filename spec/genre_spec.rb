@@ -1,4 +1,4 @@
-require_relative '../Class/genre'
+require_relative '../class/genre'
 
 describe Genre do
   context 'Test Genre Class' do
