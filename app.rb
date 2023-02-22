@@ -143,7 +143,7 @@ class App
 
   def load_books
     file_name = './data/books.json'
-    return unless File.exist?(file_name)
+    return unless File.exist?(file_name) && !File.empty?(file_name)
 
     JSON.parse(File.read(file_name)).each do |e|
       new_item = Book.new(e['publish_date'], e['publisher'], e['cover_state'])
@@ -172,6 +172,7 @@ class App
   def load_labels
     file_name = './data/labels.json'
     return unless File.exist?(file_name)
+    return if File.empty?(file_name)
 
     JSON.parse(File.read(file_name)).each do |e|
       find_or_create_label(e['title'], e['color'])
