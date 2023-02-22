@@ -2,9 +2,8 @@ require_relative 'item'
 require_relative 'genre'
 
 class MusicAlbum < Item
-  def initialize(title, publish_date, on_spotify, id = nil)
+  def initialize(title, publish_date, on_spotify, _id = nil)
     super(publish_date)
-    @id = id || Random.rand(1..1000)
     @title = title
     @on_spotify = on_spotify
     @genre = nil

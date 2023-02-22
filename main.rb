@@ -11,7 +11,7 @@ class Main < App
       '4': 'List all genres (e.g Comedy, Thriller)',
       '5': 'List all labels (e.g. Gift, New)',
       '6': 'List all authors (e.g. Stephen King)',
-      '7': 'List all sources (e.g. From a friend, Online shop)',
+      '7': 'Remove selected item by ID (e.g. book, music, game)',
       '8': 'Add a book',
       '9': 'Add a music album',
       '10': 'Add a game',
@@ -27,7 +27,7 @@ class Main < App
     when '4' then list_all_genres
     when '5' then list_all_labels
     when '6' then list_all_authors
-    when '7' then list_all_sources
+    when '7' then remove_selected_item
     when '8' then add_book
     when '9' then add_music_album
     when '10' then add_game
@@ -35,6 +35,7 @@ class Main < App
   end
 
   def display_menu
+    puts '------------------------------------------'
     @menu.each do |index, command|
       puts "#{index} - #{command}"
     end
@@ -53,14 +54,14 @@ class Main < App
 
   def logo
     puts "
-                         _/                _/
-    _/_/_/    _/_/_/  _/_/_/_/    _/_/_/  _/    _/_/      _/_/_/
- _/        _/    _/    _/      _/    _/  _/  _/    _/  _/    _/
-_/        _/    _/    _/      _/    _/  _/  _/    _/  _/    _/
- _/_/_/    _/_/_/      _/_/    _/_/_/  _/    _/_/      _/_/_/
-                                                          _/
-                                                     _/_/
-    "
+       _/_/_/              _/                _/
+    _/          _/_/_/  _/_/_/_/    _/_/_/  _/    _/_/      _/_/_/
+   _/        _/    _/    _/      _/    _/  _/  _/    _/  _/    _/
+  _/        _/    _/    _/      _/    _/  _/  _/    _/  _/    _/
+   _/_/_/    _/_/_/      _/_/    _/_/_/  _/    _/_/      _/_/_/
+                                                            _/
+                                                       _/_/
+     "
   end
 
   def run
