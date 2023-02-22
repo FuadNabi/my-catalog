@@ -70,7 +70,7 @@ class App
   def list_all_authors
     puts 'List of all authors'
     if @authors.length <= 0
-      puts 'No games to show'
+      puts 'No authors to show'
     else
       @authors.each do |author|
         puts "First Name: #{author.first_name} Last Name: #{author.last_name}"
