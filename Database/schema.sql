@@ -48,5 +48,11 @@ CREATE TABLE books (
   FOREIGN KEY (label_id) REFERENCES labels(id),  
 )
 
+CREATE INDEX genres_id_asc ON genres(id ASC);
+CREATE INDEX authors_id_asc ON authors(id ASC);
+CREATE INDEX labels_id_asc ON labels(id ASC);
+
 ALTER TABLE
     "music_albums" ADD CONSTRAINT "music_albums_genre_foreign" FOREIGN KEY("genre") REFERENCES "genre"("id");
+
+CREATE INDEX genre_id_asc ON genre(id ASC);
