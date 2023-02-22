@@ -76,7 +76,6 @@ class App
 
   # List all authors option "6"
   def list_all_authors
-
     puts 'List of all authors'
     if @authors.length <= 0
       puts 'No authors to show'
