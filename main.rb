@@ -7,7 +7,7 @@ class Main < App
     @menu = {
       '1': 'List all books',
       '2': 'List all music albums',
-      '3': 'List all movies',
+      '3': 'List all games',
       '4': 'List all genres (e.g Comedy, Thriller)',
       '5': 'List all labels (e.g. Gift, New)',
       '6': 'List all authors (e.g. Stephen King)',
@@ -23,7 +23,7 @@ class Main < App
     case input
     when '1' then list_all_books
     when '2' then list_all_music_albums
-    when '3' then list_all_movies
+    when '3' then list_all_games
     when '4' then list_all_genres
     when '5' then list_all_labels
     when '6' then list_all_authors

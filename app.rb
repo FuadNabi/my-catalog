@@ -25,9 +25,11 @@ class App
     end
   end
 
-  def list_all_movies
-    # add code here
-    puts 'List all movies'
+  # List all games option "3"
+  def list_all_games
+    @games.each do |game|
+      puts "Multiplayers: #{game.multiplayer} Last played: #{game.last_played_at} Publish date: #{game.publish_date}"
+    end
   end
 
   def list_all_genres
@@ -89,7 +91,6 @@ class App
 
   # Add game option "10"
   def add_game
-    # add code here
     print 'Multiplayer(y/n)?'
     multi = gets.chomp
     print 'Last played at. date [yyyy-mm-dd]:'
