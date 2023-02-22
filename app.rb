@@ -33,8 +33,12 @@ class App
   end
 
   def list_all_music_albums
-    @music_albums.each do |e|
-      puts "Title: #{e.title}, Publish date:[#{e.publish_date}], On Spotify: #{e.on_spotify}, Genre: #{e.genre.name}, ID: #{e.id}"
+    if @music_albums.empty?
+      puts 'No music albums have yet been created!'
+    else
+      @music_albums.each do |e|
+        puts "Title: #{e.title}, Publish date:[#{e.publish_date}], On Spotify: #{e.on_spotify}, Genre: #{e.genre.name}, ID: #{e.id}"
+      end
     end
   end
 
@@ -50,8 +54,12 @@ class App
   end
 
   def list_all_genres
-    @genres.each do |e|
-      puts "Genre: #{e.name}"
+    if @genres.empty?
+      puts 'No genres have yet been created!'
+    else
+      @genres.each do |e|
+        puts "Genre: #{e.name}"
+      end
     end
   end
 
