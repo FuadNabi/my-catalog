@@ -40,8 +40,13 @@ class App
   end
 
   def list_all_labels
-    # add code here
-    puts 'List all labels'
+    if @labels.empty?
+      puts 'No labels have yet been created!'
+    else
+      @labels.each do |e|
+        puts "Title: #{e.title}, Color: #{e.color}, ID: #{e.id}"
+      end
+    end
   end
 
   def list_all_authors
@@ -55,7 +60,7 @@ class App
   end
 
   def find_or_create_label(title, color)
-    label = @labels.find { |label| label.title == title && label.color == color }
+    label = @labels.find { |l| l.title == title && l.color == color }
     unless label
       label = Label.new(title, color)
       @labels.push(label)
@@ -136,6 +141,55 @@ class App
     puts "Item of #{type} was successfully deleted."
   end
 
+  def load_books
+    file_name = './data/books.json'
+    return unless File.exist?(file_name)
+
+    JSON.parse(File.read(file_name)).each do |e|
+      new_item = Book.new(e['publish_date'], e['publisher'], e['cover_state'])
+      label = find_or_create_label(e['title'], e['color'])
+      new_item.add_label(label)
+
+      @books.push(new_item)
+    end
+  end
+
+  def save_books
+    data = []
+    file_name = './data/books.json'
+    @books.each do |e|
+      data.push({
+                  title: e.label.title,
+                  publish_date: e.publish_date,
+                  color: e.label.color,
+                  publisher: e.publisher,
+                  cover_state: e.cover_state
+                })
+    end
+    File.write(file_name, JSON.generate(data))
+  end
+
+  def load_labels
+    file_name = './data/labels.json'
+    return unless File.exist?(file_name)
+
+    JSON.parse(File.read(file_name)).each do |e|
+      find_or_create_label(e['title'], e['color'])
+    end
+  end
+
+  def save_labels
+    data = []
+    file_name = './data/labels.json'
+    @labels.each do |e|
+      data.push({
+                  title: e.title,
+                  color: e.color
+                })
+    end
+    File.write(file_name, JSON.generate(data))
+  end
+
   def load_music_albums
     file_name = './data/music_albums.json'
     return unless File.exist?(file_name)
@@ -184,10 +238,14 @@ class App
   def load_data
     load_genres
     load_music_albums
+    load_books
+    load_labels
   end
 
   def save_data
+    save_labels
     save_genres
     save_music_albums
+    save_books
   end
 end
