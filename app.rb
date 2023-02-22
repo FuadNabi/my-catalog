@@ -27,14 +27,18 @@ class App
       puts 'No books have yet been created!'
     else
       @books.each do |e|
-        puts "Title: #{e.label.title}, Publish date:[#{e.publish_date}], Color: #{e.label.color}, Publisher: #{e.publisher}, Cover state: #{e.cover_state}, ID: #{e.label.id}"
+        puts "Title: #{e.label.title}, Publish date:[#{e.publish_date}], Color: #{e.label.color}, Publisher: #{e.publisher}, Cover state: #{e.cover_state}, ID: #{e.id}"
       end
     end
   end
 
   def list_all_music_albums
-    @music_albums.each do |e|
-      puts "Title: #{e.title}, Publish date:[#{e.publish_date}], On Spotify: #{e.on_spotify}, Genre: #{e.genre.name}, ID: #{e.id}"
+    if @music_albums.empty?
+      puts 'No music albums have yet been created!'
+    else
+      @music_albums.each do |e|
+        puts "Title: #{e.title}, Publish date:[#{e.publish_date}], On Spotify: #{e.on_spotify}, Genre: #{e.genre.name}, ID: #{e.id}"
+      end
     end
   end
 
@@ -44,14 +48,18 @@ class App
       puts 'No games to show'
     else
       @games.each do |game|
-        puts "Multiplayers: #{game.multiplayer} Last played: #{game.last_played_at} Publish date: #{game.publish_date}"
+        puts "Multiplayers: #{game.multiplayer} Last played: #{game.last_played_at} Publish date: #{game.publish_date} ID: #{game.id}"
       end
     end
   end
 
   def list_all_genres
-    @genres.each do |e|
-      puts "Genre: #{e.name}"
+    if @genres.empty?
+      puts 'No genres have yet been created!'
+    else
+      @genres.each do |e|
+        puts "Genre: #{e.name}"
+      end
     end
   end
 
@@ -66,13 +74,13 @@ class App
   end
 
   def list_all_authors
-    # add code here
-    puts 'List all authors'
-  end
-
-  def list_all_sources
-    # add code here
-    puts 'List all sources'
+    if @authors.empty?
+      puts 'No authors have yet been created!'
+    else
+      @authors.each do |e|
+        puts "First name: #{e.first_name}, Last name: #{e.last_name}"
+      end
+    end
   end
 
   def find_or_create_label(title, color)
@@ -157,14 +165,16 @@ class App
   end
 
   def remove_selected_item
-    print 'Class of item [book, music, game]:'
+    print 'Input the class of item [book, music, game]:'
     type = gets.chomp
 
-    print 'ID:'
+    print 'Select ID:'
     id = gets.chomp.to_i
 
     case type
+    when 'book' then @books.delete_if { |e| e.id == id }
     when 'music' then @music_albums.delete_if { |e| e.id == id }
+    when 'game' then @games.delete_if { |e| e.id == id }
     end
 
     puts "Item of #{type} was successfully deleted."
@@ -223,6 +233,7 @@ class App
   def load_music_albums
     file_name = './data/music_albums.json'
     return unless File.exist?(file_name)
+    return if File.empty?(file_name)
 
     JSON.parse(File.read(file_name)).each do |e|
       new_item = MusicAlbum.new(e['title'], e['publish_date'], e['on_spotify'])
@@ -250,6 +261,7 @@ class App
   def load_genres
     file_name = './data/genres.json'
     return unless File.exist?(file_name)
+    return if File.empty?(file_name)
 
     JSON.parse(File.read(file_name)).each do |e|
       find_or_create_genre(e['name'])
