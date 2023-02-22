@@ -1,15 +1,22 @@
 require_relative 'item'
+require_relative 'genre'
 
 class MusicAlbum < Item
-  def initialize(publish_date, on_spotify, id = nil)
+  def initialize(title, publish_date, on_spotify, id = nil)
     super(publish_date)
     @id = id || Random.rand(1..1000)
+    @title = title
     @on_spotify = on_spotify
+    @genre = nil
   end
 
-  attr_reader :id, :publish_date, :on_spotify
+  attr_reader :id, :publish_date, :on_spotify, :title, :genre
 
   def can_be_archived?()
     super && @on_spotify
+  end
+
+  def add_genre(genre)
+    @genre = genre
   end
 end
