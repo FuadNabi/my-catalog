@@ -31,6 +31,7 @@ class Main < App
     when '8' then add_book
     when '9' then add_music_album
     when '10' then add_game
+    when '12' then add_author
     end
   end
 
