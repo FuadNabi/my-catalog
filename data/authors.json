@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "id": 662,
+    "first_name": "Saikat",
+    "last_name": "Chakraborty"
+  },
+  {
+    "id": 449,
+    "first_name": "Jim",
+    "last_name": "Kart"
+  },
+  {
+    "id": 281,
+    "first_name": "Robert",
+    "last_name": "Shelly"
+  },
+  {
+    "id": 423,
+    "first_name": "Stuart",
+    "last_name": "Brod"
+  }
+]

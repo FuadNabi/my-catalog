@@ -3,6 +3,7 @@ require_relative './class/genre'
 require_relative './class/book'
 require_relative './class/label'
 require_relative './class/game'
+require_relative './class/author'
 require './data_store'
 require 'json'
 
@@ -73,7 +74,21 @@ class App
     end
   end
 
+  # List all authors option "6"
   def list_all_authors
+    puts 'List of all authors'
+    if @authors.length <= 0
+      puts 'No authors to show'
+    else
+      @authors.each do |author|
+        puts "First Name: #{author.first_name} Last Name: #{author.last_name}"
+      end
+    end
+  end
+
+  def list_all_sources
+    # add code here
+    puts 'List all sources'
     if @authors.empty?
       puts 'No authors have yet been created!'
     else
@@ -156,12 +171,25 @@ class App
     published = gets.chomp
     @games << Game.new(multi, last_played, published)
     puts 'A new Game added successfully'
+
+    print 'Frist name of the author of the game? '
+    first_name = gets.chomp
+    print 'Last name of the author of the game? '
+    last_name = gets.chomp
+    @authors << Author.new(first_name, last_name)
+    puts 'Author added successfully!'
   end
 
   def save_game
     game = @games.map(&:create_json)
     write_data = JSON.pretty_generate(game)
     File.write('./data/games.json', write_data)
+  end
+
+  def save_author
+    auth = @authors.map(&:create_json)
+    write__auth_data = JSON.pretty_generate(auth)
+    File.write('./data/authors.json', write__auth_data)
   end
 
   def remove_selected_item
@@ -285,6 +313,7 @@ class App
   end
 
   def save_data
+    save_author
     save_labels
     save_game
     save_genres
