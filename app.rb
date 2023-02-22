@@ -1,5 +1,7 @@
 require_relative './class/music_album'
 require_relative './class/genre'
+require_relative './class/book'
+require_relative './class/label'
 require 'json'
 
 class App
@@ -7,11 +9,17 @@ class App
     @books = []
     @music_albums = []
     @genres = []
+    @labels = []
   end
 
   def list_all_books
-    # add code here
-    puts 'List all books'
+    if @books.empty?
+      puts 'No books have yet been created!'
+    else
+      @books.each do |e|
+        puts "Title: #{e.label.title}, Publish date:[#{e.publish_date}], Color: #{e.label.color}, Publisher: #{e.publisher}, Cover state: #{e.cover_state}, ID: #{e.label.id}"
+      end
+    end
   end
 
   def list_all_music_albums
@@ -46,9 +54,36 @@ class App
     puts 'List all sources'
   end
 
+  def find_or_create_label(title, color)
+    label = @labels.find { |label| label.title == title && label.color == color }
+    unless label
+      label = Label.new(title, color)
+      @labels.push(label)
+    end
+    label
+  end
+
   def add_book
-    # add code here
-    puts 'Add book'
+    print 'Title: '
+    title = gets.chomp
+
+    print 'Publish date [yyyy-mm-dd]: '
+    publish_date = gets.chomp
+
+    print 'Color of the book: '
+    color = gets.chomp
+
+    print 'Publisher: '
+    publisher = gets.chomp
+
+    print 'Please write cover state ["good"/"bad"]'
+    cover_state = gets.chomp
+    label = find_or_create_label(title, color)
+
+    book = Book.new(publish_date, publisher, cover_state)
+    book.add_label(label)
+    @books.push(book)
+    puts 'Book was created successfully.'
   end
 
   def find_or_create_genre(name)
