@@ -2,6 +2,8 @@ require_relative './class/music_album'
 require_relative './class/genre'
 require_relative './class/book'
 require_relative './class/label'
+require_relative './class/game'
+require './data_store'
 require 'json'
 
 class App
@@ -10,6 +12,14 @@ class App
     @music_albums = []
     @genres = []
     @labels = []
+    @games = []
+    @authors = []
+
+    @games_store = DataStore.new('games')
+    @games = @games_store.read.map { |game| Game.new(game['multiplayer'], game['last_played_at'], game['publish_date']) }
+
+    @author_store = DataStore.new('authors')
+    @authors = @author_store.read.map { |author| Author.new(author['first_name'], author['last_name']) }
   end
 
   def list_all_books
@@ -28,9 +38,15 @@ class App
     end
   end
 
-  def list_all_movies
-    # add code here
-    puts 'List all movies'
+  # List all games option "3"
+  def list_all_games
+    if @games.length <= 0
+      puts 'No games to show'
+    else
+      @games.each do |game|
+        puts "Multiplayers: #{game.multiplayer} Last played: #{game.last_played_at} Publish date: #{game.publish_date}"
+      end
+    end
   end
 
   def list_all_genres
@@ -122,9 +138,22 @@ class App
     puts 'Music album was created successfully.'
   end
 
-  def add_movie
-    # add code here
-    puts 'Add movies'
+  # Add game option "10"
+  def add_game
+    print 'Multiplayer(y/n)?'
+    multi = gets.chomp
+    print 'Last played at. date [yyyy-mm-dd]:'
+    last_played = gets.chomp
+    print 'Publish date [yyyy-mm-dd]:'
+    published = gets.chomp
+    @games << Game.new(multi, last_played, published)
+    puts 'A new Game added successfully'
+  end
+
+  def save_game
+    game = @games.map(&:create_json)
+    write_data = JSON.pretty_generate(game)
+    File.write('./data/games.json', write_data)
   end
 
   def remove_selected_item
@@ -245,6 +274,7 @@ class App
 
   def save_data
     save_labels
+    save_game
     save_genres
     save_music_albums
     save_books
