@@ -1,5 +1,7 @@
 require_relative './class/music_album'
 require_relative './class/genre'
+require_relative './class/book'
+require_relative './class/label'
 require_relative './class/game'
 require './data_store'
 require 'json'
@@ -9,6 +11,7 @@ class App
     @books = []
     @music_albums = []
     @genres = []
+    @labels = []
     @games = []
     @authors = []
 
@@ -20,8 +23,13 @@ class App
   end
 
   def list_all_books
-    # add code here
-    puts 'List all books'
+    if @books.empty?
+      puts 'No books have yet been created!'
+    else
+      @books.each do |e|
+        puts "Title: #{e.label.title}, Publish date:[#{e.publish_date}], Color: #{e.label.color}, Publisher: #{e.publisher}, Cover state: #{e.cover_state}, ID: #{e.label.id}"
+      end
+    end
   end
 
   def list_all_music_albums
@@ -48,8 +56,13 @@ class App
   end
 
   def list_all_labels
-    # add code here
-    puts 'List all labels'
+    if @labels.empty?
+      puts 'No labels have yet been created!'
+    else
+      @labels.each do |e|
+        puts "Title: #{e.title}, Color: #{e.color}, ID: #{e.id}"
+      end
+    end
   end
 
   def list_all_authors
@@ -62,9 +75,36 @@ class App
     puts 'List all sources'
   end
 
+  def find_or_create_label(title, color)
+    label = @labels.find { |l| l.title == title && l.color == color }
+    unless label
+      label = Label.new(title, color)
+      @labels.push(label)
+    end
+    label
+  end
+
   def add_book
-    # add code here
-    puts 'Add book'
+    print 'Title: '
+    title = gets.chomp
+
+    print 'Publish date [yyyy-mm-dd]: '
+    publish_date = gets.chomp
+
+    print 'Color of the book: '
+    color = gets.chomp
+
+    print 'Publisher: '
+    publisher = gets.chomp
+
+    print 'Please write cover state ["good"/"bad"]'
+    cover_state = gets.chomp
+    label = find_or_create_label(title, color)
+
+    book = Book.new(publish_date, publisher, cover_state)
+    book.add_label(label)
+    @books.push(book)
+    puts 'Book was created successfully.'
   end
 
   def find_or_create_genre(name)
@@ -130,6 +170,56 @@ class App
     puts "Item of #{type} was successfully deleted."
   end
 
+  def load_books
+    file_name = './data/books.json'
+    return unless File.exist?(file_name) && !File.empty?(file_name)
+
+    JSON.parse(File.read(file_name)).each do |e|
+      new_item = Book.new(e['publish_date'], e['publisher'], e['cover_state'])
+      label = find_or_create_label(e['title'], e['color'])
+      new_item.add_label(label)
+
+      @books.push(new_item)
+    end
+  end
+
+  def save_books
+    data = []
+    file_name = './data/books.json'
+    @books.each do |e|
+      data.push({
+                  title: e.label.title,
+                  publish_date: e.publish_date,
+                  color: e.label.color,
+                  publisher: e.publisher,
+                  cover_state: e.cover_state
+                })
+    end
+    File.write(file_name, JSON.generate(data))
+  end
+
+  def load_labels
+    file_name = './data/labels.json'
+    return unless File.exist?(file_name)
+    return if File.empty?(file_name)
+
+    JSON.parse(File.read(file_name)).each do |e|
+      find_or_create_label(e['title'], e['color'])
+    end
+  end
+
+  def save_labels
+    data = []
+    file_name = './data/labels.json'
+    @labels.each do |e|
+      data.push({
+                  title: e.title,
+                  color: e.color
+                })
+    end
+    File.write(file_name, JSON.generate(data))
+  end
+
   def load_music_albums
     file_name = './data/music_albums.json'
     return unless File.exist?(file_name)
@@ -178,11 +268,15 @@ class App
   def load_data
     load_genres
     load_music_albums
+    load_books
+    load_labels
   end
 
   def save_data
+    save_labels
     save_game
     save_genres
     save_music_albums
+    save_books
   end
 end
