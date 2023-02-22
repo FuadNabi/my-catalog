@@ -14,6 +14,6 @@ class Game < Item
   end
 
   def create_json
-    {multiplayer: @multiplayer, last_played_at: @last_played_at, publish_date: @publish_date}
+    { multiplayer: @multiplayer, last_played_at: @last_played_at, publish_date: @publish_date }
   end
 end
