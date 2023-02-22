@@ -1,5 +1,5 @@
-require_relative '../class/label'
-require_relative '../class/item'
+require_relative '../classes/label'
+require_relative '../classes/item'
 
 describe Label do
   describe 'New' do
