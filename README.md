@@ -7,6 +7,7 @@
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
+  - [📽️ Video Presentation](#video)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -17,9 +18,9 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Enumerable <a name="about-project"></a>
+# 📖 My Catalog <a name="about-project"></a>
 
-> In this project we learn how to use a module inside your class. For this we create a class MyList and a module MyEnumerable..
+> This project is console app built using ruby, the app will help you to keep a record of different types of things you own: books, music albums, movies, and games, the data stored in json file, and it will be always useable whenever you start the app.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -29,6 +30,9 @@
   <summary>Server</summary>
   <ul>
     <li><a href="https://www.ruby-lang.org/en/">Ruby</a></li>
+  </ul>
+  <ul>
+    <li><a href="https://www.ruby-lang.org/en/">SQL</a></li>
   </ul>
 </details>
 
@@ -69,9 +73,15 @@ Example command:
 
 ```sh
   cd my-project
-  gem install
+  ruby main.rb
 ```
 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📽️ Video Presentation <a name="video"></a>
+
+- [Video Presentation 📽️](https://user-images.githubusercontent.com/106581139/220740446-ed75b847-c6be-4c1d-a546-cad5bf1600c9.mp4)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -85,11 +95,18 @@ Example command:
 - Twitter: [@twitterhandle](https://twitter.com/FuadNebiyev2)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/fuad-nabiyev/)
 
-👤 **Lukman Abdulkarim**
+👤 **Sergiy Shkolnik**
 
-- GitHub: [@Lukman](https://github.com/lukman155)
-- Twitter: [@Luk, A man](https://twitter.com/lukmanabdulka18)
-- LinkedIn: [Lukman Abdulkarim](https://www.linkedin.com/in/lukmanbaba/)
+- GitHub: [SergSkol](https://github.com/SergSkol)
+- Twitter: [@sps676](https://twitter.com/sps676)
+- LinkedIn: [SergSkol](https://www.linkedin.com/in/sergskol/)
+
+👤 **Saikat Chakraborty**
+
+- GitHub: [@githubhandle](https://github.com/saikatgpae)
+- Twitter: [@twitterhandle](https://twitter.com/saikatgpae)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/saikatgpae/)
+
 
 ## 🔭 Future Features <a name="future-features"></a>
 
@@ -105,7 +122,7 @@ Example command:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/FuadNabi/Enumerable/issues/).
+Feel free to check the [issues page](https://github.com/FuadNabi/my-catalog/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -140,6 +157,6 @@ I would like to thank...
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](https://github.com/FuadNabi/Enumerable/blob/dev/LICENSE) licensed.
+This project is [MIT](https://github.com/FuadNabi/my-catalog/blob/dev/LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
