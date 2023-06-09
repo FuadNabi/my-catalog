@@ -92,7 +92,7 @@ Example command:
 👤 **Fuad Nabiyev**
 
 - GitHub: [@githubhandle](https://github.com/FuadNabi)
-- Twitter: [@twitterhandle](https://twitter.com/FuadNebiyev2)
+- Twitter: [@twitterhandle](https://twitter.com/FuadNabiyev_)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/fuad-nabiyev/)
 
 👤 **Sergiy Shkolnik**
